@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBAM - Transform Your Business Into a Discipleship Platform</title>
+    <meta name="description" content="Join 300+ Christian entrepreneurs across 11 countries using proven biblical business principles to multiply disciples and grow kingdom impact with a 96.4% success rate.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        :root {
+            --primary-teal: #4ECDC4;
+            --primary-blue: #2C3E50;
+            --dark-navy: #1a202c;
+            --success-green: #10b981;
+            --light-bg: #f8fafc;
+            --border-gray: #e2e8f0;
+            --orange: #f59e0b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Page Management */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Header - Fixed Navigation */
+        .header {
+            background: var(--dark-navy);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-symbol {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--success-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .fish-icon {
+            position: absolute;
+            font-size: 8px;
+            color: white;
+        }
+
+        .fish-1 { transform: rotate(0deg) translateY(-6px); }
+        .fish-2 { transform: rotate(120deg) translateY(-6px); }
+        .fish-3 { transform: rotate(240deg) translateY(-6px); }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: var(--primary-teal);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-teal);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .btn-assessment {
+            background: linear-gradient(135deg, var(--primary-teal), var(--success-green));
+            color: white;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .btn-assessment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+            animation: none;
+        }
+
+        .btn-donate {
+            background: var(--orange);
+            color: white;
+            border: 2px solid var(--orange);
+        }
+
+        .btn-donate:hover {
+            background: #e5910a;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e293b 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .credibility-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 8px 20px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .social-proof {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--primary-teal), var(--success-green));
+            color: white;
+            padding: 18px 36px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-hero-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(78, 205, 196, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Content Pages */
+        .content-page {
+            padding: 120px 0 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Assessment Styles */
+        .assessment-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            max-width: 800px;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .question h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option {
+            background: var(--light-bg);
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: var(--primary-teal);
+            background: #f0fdfa;
+        }
+
+        .option.selected {
+            border-color: var(--primary-teal);
+            background: #f0fdfa;
+        }
+
+        .progress-bar {
+            background: var(--border-gray);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary-teal), var(--success-green));
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--success-green));
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Member Result Pages */
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            text-align: center;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .member-type-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .impact-member { background: var(--success-green); }
+        .business-member { background: var(--primary-teal); }
+        .advanced-member { background: linear-gradient(135deg, var(--primary-teal), #8b5cf6); }
+        .church-partner { background: var(--primary-blue); }
+
+        /* Business Planner Styles */
+        .planning-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            background: var(--light-bg);
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover, .step.active {
+            border-color: var(--primary-teal);
+            background: #f0fdfa;
+        }
+
+        .step.completed {
+            background: var(--success-green);
+            color: white;
+            border-color: var(--success-green);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary-teal);
+            outline: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-navy);
+            color: white;
+            padding: 60px 0 40px;
+            position: relative;
+            z-index: 1;
+            display: block !important;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-teal);
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary-teal);
+            transform: translateY(-2px);
+        }
+
+        /* Testimonial Styles for Impact Page */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--success-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 1rem;
+        }
+
+        /* Dashboard Styles */
+        .metric-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .metric-card.primary::before { background: var(--primary-teal); }
+        .metric-card.success::before { background: var(--success-green); }
+        .metric-card.business::before { background: var(--primary-blue); }
+        .metric-card.global::before { background: var(--orange); }
+        .metric-card.secondary::before { background: #8b5cf6; }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .metric-change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .metric-change.positive {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .metric-change.negative {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        /* Chart Styles */
+        .chart-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .chart-placeholder {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            min-height: 250px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            height: 200px;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .chart-bar {
+            background: linear-gradient(to top, var(--primary-teal), var(--success-green));
+            border-radius: 8px 8px 0 0;
+            min-width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .bar-value {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: absolute;
+            top: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .bar-label {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Region Chart Styles */
+        .region-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .region-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .region-bar {
+            height: 20px;
+            border-radius: 10px;
+            min-width: 40px;
+            transition: width 0.3s ease;
+        }
+
+        .region-bar.africa { background: var(--primary-teal); }
+        .region-bar.asia { background: var(--success-green); }
+        .region-bar.latin { background: var(--orange); }
+        .region-bar.other { background: var(--primary-blue); }
+
+        .region-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .region-name {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .region-count {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: #f0fdfa;
+            transform: translateX(5px);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.primary { background: var(--primary-teal); color: white; }
+        .activity-icon.success { background: var(--success-green); color: white; }
+        .activity-icon.business { background: var(--primary-blue); color: white; }
+        .activity-icon.global { background: var(--orange); color: white; }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mr-4 { margin-right: 1rem; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .social-proof {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo" onclick="showPage('home')">
+                    <div class="logo-symbol">
+                        <div class="fish-icon fish-1">🐟</div>
+                        <div class="fish-icon fish-2">🐟</div>
+                        <div class="fish-icon fish-3">🐟</div>
+                    </div>
+                    <div class="logo-text">
+                        <h1>IBAM</h1>
+                        <p>DESIGNED TO THRIVE</p>
+                    </div>
+                </div>
+                
+                <div class="nav-menu">
+                    <span class="nav-link" onclick="showPage('about')">About</span>
+                    <span class="nav-link" onclick="showPage('impact')">Impact Stories</span>
+                    <span class="nav-link" onclick="showPage('impact-dashboard')">Impact Dashboard</span>
+                    <span class="nav-link" onclick="showPage('donate')">Donate</span>
+                    <span class="nav-link" onclick="showPage('resources')">Resources</span>
+                    <span class="nav-link" onclick="showPage('contact')">Contact</span>
+                </div>
+                
+                <div class="cta-nav">
+                    <span class="btn btn-assessment" onclick="showPage('assessment')">Take Assessment</span>
+                    <span class="btn btn-donate" onclick="showPage('donate')">Donate Now</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="credibility-badge">
+                        ✅ Trusted by 300+ Christian Entrepreneurs in 11 Countries
+                    </div>
+                    
+                    <h1>Transform Your Business Into a Discipleship Platform</h1>
+                    
+                    <p class="hero-subtitle">
+                        Join proven Christian entrepreneurs across 11 countries using biblical business principles to multiply disciples, 
+                        create sustainable income, and advance God's Kingdom with a 96.4% success rate.
+                    </p>
+                    
+                    <div class="social-proof">
+                        <div class="proof-item">
+                            <i class="fas fa-users" style="color: var(--primary-teal);"></i>
+                            <span>347 Entrepreneurs Trained</span>
+                        </div>
+                        <div class="proof-item">
+                            <i class="fas fa-globe" style="color: var(--success-green);"></i>
+                            <span>11 Countries Impacted</span>
+                        </div>
+                        <div class="proof-item">
+                            <i class="fas fa-chart-line" style="color: var(--orange);"></i>
+                            <span>96.4% Loan Payback Rate</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <span class="btn btn-hero-primary" onclick="showPage('assessment')">
+                            Discover Your Business Calling
+                        </span>
+                        <span class="btn btn-secondary" onclick="showPage('donate')">
+                            <i class="fas fa-heart" style="margin-right: 8px;"></i>
+                            Support Entrepreneurs
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Process Overview -->
+        <section style="background: var(--light-bg); padding: 60px 0;">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 style="font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 1rem;">The IBAM Process</h2>
+                    <p style="font-size: 1.2rem; color: #64748b;">Three steps to transform your business into a discipleship platform</p>
+                </div>
+                
+                <div class="grid-3">
+                    <div class="text-center">
+                        <div style="width: 80px; height: 80px; background: var(--primary-teal); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🐟</div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">GIVE A FISH</h3>
+                        <p>Provide a start-up loan to kickstart a business journey</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="width: 80px; height: 80px; background: var(--success-green); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🎣</div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">TEACH TO FISH</h3>
+                        <p>Offer entrepreneur training for sustainable development</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="width: 80px; height: 80px; background: var(--primary-blue); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">⚡</div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">EQUIP FOR DISCIPLESHIP</h3>
+                        <p>Encourage discipleship to multiply impact</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <span class="btn btn-hero-primary" onclick="showPage('assessment')">Start Your IBAM Journey</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ASSESSMENT PAGE -->
+    <div class="page" id="assessment">
+        <div class="content-page">
+            <div class="container">
+                <div class="assessment-container">
+                    <div class="text-center mb-4">
+                        <h1 style="color: var(--primary-blue);">Discover Your IBAM Path</h1>
+                        <p>Answer a few questions to find the perfect membership for your journey</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="assessmentProgress" style="width: 25%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question 1 -->
+                    <div class="question active" id="q1">
+                        <h2>What best describes your primary interest?</h2>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'impact')">
+                                <h3>🌍 Support Global Disciplemaking Entrepreneurs</h3>
+                                <p>I want to financially support and encourage entrepreneurs worldwide who are using business as a platform for Gospel advancement.</p>
+                            </div>
+                            <div class="option" onclick="selectOption(this, 'business')">
+                                <h3>🚀 Start and/or Grow My Faith-Driven Business</h3>
+                                <p>I'm an entrepreneur looking to integrate biblical principles into my business and use it as a discipleship platform.</p>
+                            </div>
+                            <div class="option" onclick="selectOption(this, 'church')">
+                                <h3>⛪ Church/Ministry Leader</h3>
+                                <p>I lead a church or ministry and want to bring IBAM training to our organization for member development.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="question" id="q2">
+                        <h2>What's your current business situation?</h2>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'startup')">
+                                <h3>💡 Early Stage / Startup</h3>
+                                <p>I'm in the planning phase or just getting started with my business idea.</p>
+                            </div>
+                            <div class="option" onclick="selectOption(this, 'existing')">
+                                <h3>📈 Existing Business</h3>
+                                <p>I have an established business and want to scale or improve operations.</p>
+                            </div>
+                            <div class="option" onclick="selectOption(this, 'leader')">
+                                <h3>👥 Ministry/Church Leader</h3>
+                                <p>I lead others and want to equip them with business skills for ministry.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="question" id="q3">
+                        <h2>What's your experience level?</h2>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'beginner')">
+                                <h3>🌱 New to Business</h3>
+                                <p>I'm just starting out and need foundational training.</p>
+                            </div>
+                            <div class="option" onclick="selectOption(this, 'experienced')">
+                                <h3>⚡ Experienced Entrepreneur</h3>
+                                <p>I have business experience and want advanced strategies and coaching.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" style="display: none;">Previous</button>
+                        <button class="btn btn-hero-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEMBER DASHBOARD -->
+    <div class="page" id="dashboard">
+        <div class="content-page">
+            <div class="container">
+                <div style="background: white; border-radius: 20px; padding: 3rem; margin-bottom: 2rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">Welcome to Your IBAM Journey</h1>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">You're equipped to thrive as a faith-driven entrepreneur</p>
+                    
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 12px; padding: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="font-weight: 600; color: var(--primary-blue);">Course Progress</span>
+                            <span style="font-weight: 600; color: var(--success-green);">40% Complete</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card" onclick="showPage('business-planner')">
+                        <div class="card-icon">
+                            📋
+                        </div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Business Planner</h3>
+                        <p>Create your comprehensive, faith-integrated business plan</p>
+                    </div>
+
+                    <div class="card" onclick="showPage('lesson')">
+                        <div class="card-icon">
+                            🎥
+                        </div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Continue Learning</h3>
+                        <p>Access your course modules and training content</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            👥
+                        </div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Community</h3>
+                        <p>Connect with other Christian entrepreneurs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUSINESS PLANNER PAGE -->
+    <div class="page" id="business-planner">
+        <div class="content-page">
+            <div class="container">
+                <div style="margin-bottom: 2rem;">
+                    <span class="btn btn-secondary" onclick="showPage('dashboard')">← Back to Dashboard</span>
+                </div>
+                
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">IBAM Business Planner</h1>
+                    <p style="margin-bottom: 2rem;">Create your comprehensive, faith-integrated business plan in 9 strategic steps</p>
+                    
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="font-weight: 600; color: var(--primary-blue);">Plan Progress</span>
+                            <span style="font-weight: 600; color: var(--success-green);">3 of 9 Steps Complete</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 33%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="planning-steps">
+                        <div class="step completed">
+                            <h4>1. Overview</h4>
+                            <p>Business Summary</p>
+                        </div>
+                        <div class="step completed">
+                            <h4>2. Ministry Plan</h4>
+                            <p>Kingdom Integration</p>
+                        </div>
+                        <div class="step completed">
+                            <h4>3. Market Research</h4>
+                            <p>Customer & Competition</p>
+                        </div>
+                        <div class="step active">
+                            <h4>4. Products</h4>
+                            <p>Offerings & Services</p>
+                        </div>
+                        <div class="step">
+                            <h4>5. Operations</h4>
+                            <p>Day-to-Day Processes</p>
+                        </div>
+                        <div class="step">
+                            <h4>6. Team</h4>
+                            <p>Staffing & Culture</p>
+                        </div>
+                        <div class="step">
+                            <h4>7. Finance</h4>
+                            <p>Money Management</p>
+                        </div>
+                        <div class="step">
+                            <h4>8. Projections</h4>
+                            <p>Future Planning</p>
+                        </div>
+                        <div class="step">
+                            <h4>9. Health Score</h4>
+                            <p>Assessment & Goals</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--light-bg); border-radius: 12px; padding: 2rem;">
+                        <h2 style="color: var(--primary-blue); margin-bottom: 2rem;">Step 4: Products & Services</h2>
+                        
+                        <div class="form-group">
+                            <label>What products or services will you offer?</label>
+                            <textarea rows="4" placeholder="Describe your main offerings...">Custom woodworking and furniture design services, specializing in handcrafted pieces that bring beauty and functionality to homes.</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>What makes your offering unique?</label>
+                            <textarea rows="3" placeholder="What sets you apart?">Our commitment to excellence reflects our faith, and we build relationships with customers that go beyond transactions.</textarea>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <span class="btn btn-secondary" style="margin-right: 1rem;">Save Draft</span>
+                            <span class="btn btn-hero-primary">Save & Continue</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other pages (About, Impact, etc.) would go here -->
+    <div class="page" id="about">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">About IBAM</h1>
+                    <p class="page-subtitle">Empowering Christian entrepreneurs worldwide</p>
+                </div>
+                <p style="text-align: center; font-size: 1.1rem;">This demonstrates how the About page would look in the enhanced IBAM platform...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPACT STORIES PAGE -->
+    <div class="page" id="impact">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Real Impact Stories</h1>
+                    <p class="page-subtitle">Lives transformed through the IBAM three-fish process worldwide</p>
+                </div>
+
+                <!-- Featured Stories -->
+                <div style="margin-bottom: 4rem;">
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card" style="grid-column: span 2;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                                <div class="author-image" style="width: 80px; height: 80px; font-size: 1.5rem;">PK</div>
+                                <div>
+                                    <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">Peter Kiprotich</h3>
+                                    <p style="color: #64748b;">Dairy Farmer & Church Leader, Kenya</p>
+                                    <div style="color: var(--success-green); font-weight: 600; font-size: 0.9rem;">
+                                        🐟 Loan: $800 • 🎣 Trained: 2022 • ⚡ Disciples: 7 new believers
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">
+                                "When IBAM gave me my first loan of $800, I bought three dairy cows and started selling milk to my neighbors. 
+                                But the real transformation came during the training - I learned how to turn every customer interaction into an opportunity to share God's love. 
+                                Today, my dairy business supports my family and funds our church's youth programs. Seven people have given their lives to Jesus through conversations that started over milk deliveries. 
+                                I've also trained 12 other farmers in our community using IBAM principles."
+                            </p>
+                            <div style="background: var(--light-bg); border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                                <strong>Current Impact:</strong> Monthly income increased 340% • Employs 2 neighbors • Supports 15 families through dairy cooperative • Church attendance grew 45%
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div class="author-image">MS</div>
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">Maria Santos</h4>
+                                    <p style="color: #64748b; font-size: 0.9rem;">Textile Business, Guatemala</p>
+                                </div>
+                            </div>
+                            <p class="testimonial-text" style="font-size: 1rem;">
+                                "Started with a $1,200 loan to buy a sewing machine. IBAM taught me to weave prayer and scripture into my daily work. 
+                                Now I employ 8 women from our church, and we pray together each morning before starting production. 
+                                Three customers have started attending our church after seeing how we conduct business with integrity."
+                            </p>
+                            <div style="color: var(--success-green); font-weight: 600; font-size: 0.8rem; margin-top: 1rem;">
+                                🎯 Impact: 8 jobs created • 3 new disciples • 100% loan repayment
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div class="author-image">JM</div>
+                                <div>
+                                    <h4 style="color: var(--primary-blue);">Joseph Mensah</h4>
+                                    <p style="color: #64748b; font-size: 0.9rem;">Auto Repair Shop, Ghana</p>
+                                </div>
+                            </div>
+                            <p class="testimonial-text" style="font-size: 1rem;">
+                                "My mechanic shop was failing until IBAM showed me how to serve customers like Jesus would. 
+                                I learned to pray with customers who shared their struggles while waiting for repairs. 
+                                Word spread about the 'praying mechanic,' and now I'm booked solid. I've trained 5 other mechanics in biblical business principles."
+                            </p>
+                            <div style="color: var(--success-green); font-weight: 600; font-size: 0.8rem; margin-top: 1rem;">
+                                🎯 Impact: Revenue up 180% • 5 mechanics trained • 2 house churches started
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member Access Section -->
+                <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 20px; padding: 3rem; margin-bottom: 3rem; text-align: center;">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">💎 Members Get Access to 40+ Detailed Stories</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #64748b;">
+                        These are just 3 of over 40 comprehensive impact stories available to IBAM members. Get full video testimonials, 
+                        business case studies, and monthly updates from entrepreneurs worldwide.
+                    </p>
+                    
+                    <div class="grid-3" style="margin-bottom: 2rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎥</div>
+                            <h4 style="color: var(--primary-blue);">Video Stories</h4>
+                            <p style="font-size: 0.9rem;">Personal testimonials and business tours</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                            <h4 style="color: var(--primary-blue);">Business Case Studies</h4>
+                            <p style="font-size: 0.9rem;">Detailed financial and impact analysis</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                            <h4 style="color: var(--primary-blue);">Monthly Updates</h4>
+                            <p style="font-size: 0.9rem;">Ongoing progress reports and celebrations</p>
+                        </div>
+                    </div>
+                    
+                    <span class="btn btn-hero-primary" onclick="showPage('assessment')">Get Full Access to All Stories</span>
+                </div>
+
+                <!-- Impact by Numbers -->
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 2rem; text-align: center;">Stories by the Numbers</h2>
+                    <div class="grid-4">
+                        <div class="text-center">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-teal); margin-bottom: 0.5rem;">124</div>
+                            <p style="font-weight: 600;">Disciples Made</p>
+                            <p style="font-size: 0.9rem; color: #64748b;">Through business relationships</p>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--success-green); margin-bottom: 0.5rem;">823</div>
+                            <p style="font-weight: 600;">Jobs Created</p>
+                            <p style="font-size: 0.9rem; color: #64748b;">Direct and indirect employment</p>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--orange); margin-bottom: 0.5rem;">19</div>
+                            <p style="font-weight: 600;">Churches Strengthened</p>
+                            <p style="font-size: 0.9rem; color: #64748b;">Through marketplace ministry</p>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 0.5rem;">96.4%</div>
+                            <p style="font-weight: 600;">Success Rate</p>
+                            <p style="font-size: 0.9rem; color: #64748b;">Businesses still operating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESOURCES PAGE -->
+    <div class="page" id="resources">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Kingdom Business Resources</h1>
+                    <p class="page-subtitle">Free training, insights, and inspiration for faith-driven entrepreneurs</p>
+                </div>
+
+                <!-- Featured Resource -->
+                <div style="background: linear-gradient(135deg, var(--primary-teal), var(--success-green)); color: white; border-radius: 20px; padding: 3rem; margin-bottom: 4rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">📚 Free eBook: "Faith & Work Integration Guide"</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+                        "How to Integrate Faith and Work and Stand for God's Truth in Business"
+                    </p>
+                    <p style="margin-bottom: 2rem;">
+                        This comprehensive guide will help you stand strong and confident for your faith in business 
+                        without feeling timid or compromising on God's Word. Includes practical worksheets and biblical business principles.
+                    </p>
+                    <button class="btn btn-secondary" style="background: white; color: var(--primary-blue); font-size: 1.1rem; padding: 1rem 2rem;">
+                        Download Free eBook
+                    </button>
+                </div>
+
+                <!-- IBAM Podcast -->
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15); margin-bottom: 4rem;">
+                    <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
+                        <div style="width: 100px; height: 100px; background: var(--primary-blue); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white;">
+                            🎙️
+                        </div>
+                        <div>
+                            <h2 style="color: var(--primary-blue); margin-bottom: 0.5rem;">IBAM Podcast: Kingdom Business Conversations</h2>
+                            <p style="color: #64748b; font-size: 1.1rem;">Weekly conversations with Christian entrepreneurs sharing real stories of faith and business integration</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-hero-primary">Listen on Apple Podcasts</button>
+                                <button class="btn btn-secondary" style="margin-left: 1rem;">Listen on Spotify</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">Recent Episodes</h3>
+                    <div class="grid-2" style="gap: 1.5rem;">
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; padding: 1.5rem;">
+                            <div style="color: var(--success-green); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Episode 47 • NEW</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">"From $500 to $50K: A Coffee Shop That Disciples"</h4>
+                            <p style="color: #64748b; margin-bottom: 1rem;">Sarah's cafe in Honduras went from struggling startup to community transformation hub. Learn how she uses coffee conversations to make disciples.</p>
+                            <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">28 minutes • Dec 15, 2024</div>
+                            <button class="btn btn-secondary" style="font-size: 0.9rem;">▶ Play Episode</button>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; padding: 1.5rem;">
+                            <div style="color: var(--primary-teal); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Episode 46</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">"Building Teams That Pray: Leadership in Kingdom Business"</h4>
+                            <p style="color: #64748b; margin-bottom: 1rem;">Marcus shares how he built a construction company culture where workers pray together and share faith naturally with clients.</p>
+                            <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">35 minutes • Dec 8, 2024</div>
+                            <button class="btn btn-secondary" style="font-size: 0.9rem;">▶ Play Episode</button>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; padding: 1.5rem;">
+                            <div style="color: var(--orange); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Episode 45 • POPULAR</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">"When Business Fails: Finding God's Faithfulness"</h4>
+                            <p style="color: #64748b; margin-bottom: 1rem;">A vulnerable conversation about business failure, financial loss, and how God used setbacks to build stronger faith and better businesses.</p>
+                            <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">42 minutes • Dec 1, 2024</div>
+                            <button class="btn btn-secondary" style="font-size: 0.9rem;">▶ Play Episode</button>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; padding: 1.5rem;">
+                            <div style="color: var(--primary-blue); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Episode 44</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">"Scaling with Scripture: Biblical Growth Strategies"</h4>
+                            <p style="color: #64748b; margin-bottom: 1rem;">How to grow your business using biblical principles. Practical strategies for scaling while maintaining kingdom values and culture.</p>
+                            <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">31 minutes • Nov 24, 2024</div>
+                            <button class="btn btn-secondary" style="font-size: 0.9rem;">▶ Play Episode</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IBAM Blog -->
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15); margin-bottom: 4rem;">
+                    <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;">
+                        <div style="width: 100px; height: 100px; background: var(--success-green); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white;">
+                            ✍️
+                        </div>
+                        <div>
+                            <h2 style="color: var(--primary-blue); margin-bottom: 0.5rem;">IBAM Blog: Kingdom Business Insights</h2>
+                            <p style="color: #64748b; font-size: 1.1rem;">Practical articles, biblical insights, and real-world strategies for faith-driven entrepreneurs</p>
+                            <button class="btn btn-hero-primary" style="margin-top: 1rem;">Subscribe to Updates</button>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">Latest Articles</h3>
+                    <div class="grid-3" style="gap: 1.5rem;">
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden;">
+                            <div style="background: var(--primary-teal); height: 120px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">📊</div>
+                            <div style="padding: 1.5rem;">
+                                <div style="color: var(--success-green); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">BUSINESS STRATEGY • DEC 18</div>
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">5 Biblical Principles for Pricing Your Products</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">How to set prices that honor God, serve customers well, and sustain your business mission...</p>
+                                <button class="btn btn-secondary" style="font-size: 0.8rem;">Read More</button>
+                            </div>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden;">
+                            <div style="background: var(--orange); height: 120px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🙏</div>
+                            <div style="padding: 1.5rem;">
+                                <div style="color: var(--primary-teal); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">FAITH INTEGRATION • DEC 15</div>
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Praying with Customers: When and How</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">Practical guidance for naturally incorporating prayer into business relationships without being pushy...</p>
+                                <button class="btn btn-secondary" style="font-size: 0.8rem;">Read More</button>
+                            </div>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden;">
+                            <div style="background: var(--primary-blue); height: 120px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">💰</div>
+                            <div style="padding: 1.5rem;">
+                                <div style="color: var(--orange); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">FINANCIAL STEWARDSHIP • DEC 12</div>
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Biblical Budgeting for Small Businesses</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">Create budgets that reflect kingdom priorities while building sustainable, profitable enterprises...</p>
+                                <button class="btn btn-secondary" style="font-size: 0.8rem;">Read More</button>
+                            </div>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden;">
+                            <div style="background: var(--success-green); height: 120px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">👥</div>
+                            <div style="padding: 1.5rem;">
+                                <div style="color: var(--primary-blue); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">DISCIPLESHIP • DEC 10</div>
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Making Disciples Through Marketplace Relationships</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">Turn everyday business interactions into opportunities for spiritual conversations and life change...</p>
+                                <button class="btn btn-secondary" style="font-size: 0.8rem;">Read More</button>
+                            </div>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden;">
+                            <div style="background: var(--primary-teal); height: 120px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">🌍</div>
+                            <div style="padding: 1.5rem;">
+                                <div style="color: var(--success-green); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">GLOBAL IMPACT • DEC 8</div>
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Country Spotlight: IBAM Growth in Rwanda</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">See how IBAM is transforming communities in Rwanda through coffee cooperatives and textile businesses...</p>
+                                <button class="btn btn-secondary" style="font-size: 0.8rem;">Read More</button>
+                            </div>
+                        </div>
+
+                        <div style="border: 1px solid var(--border-gray); border-radius: 12px; overflow: hidden;">
+                            <div style="background: var(--orange); height: 120px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">📈</div>
+                            <div style="padding: 1.5rem;">
+                                <div style="color: var(--primary-teal); font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">SUCCESS STORIES • DEC 5</div>
+                                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">From $300 Loan to $3K Monthly: Maria's Journey</h4>
+                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">A detailed case study of how one entrepreneur transformed her family's future through IBAM training...</p>
+                                <button class="btn btn-secondary" style="font-size: 0.8rem;">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Free Downloads Section -->
+                <div style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 20px; padding: 3rem; text-align: center;">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 2rem;">📚 Free Kingdom Business Resources</h2>
+                    
+                    <div class="grid-3" style="gap: 2rem; margin-bottom: 3rem;">
+                        <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">📋</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Business Plan Template</h4>
+                            <p style="color: #64748b; margin-bottom: 1.5rem;">Faith-integrated business planning template with biblical principles woven throughout</p>
+                            <button class="btn btn-hero-primary" style="width: 100%;">Download Template</button>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">💰</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Biblical Budgeting Spreadsheet</h4>
+                            <p style="color: #64748b; margin-bottom: 1.5rem;">Excel template for creating budgets that honor God and build sustainable businesses</p>
+                            <button class="btn btn-hero-primary" style="width: 100%;">Download Spreadsheet</button>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🙏</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Workplace Prayer Guide</h4>
+                            <p style="color: #64748b; margin-bottom: 1.5rem;">Practical guide for incorporating prayer and faith sharing into business relationships</p>
+                            <button class="btn btn-hero-primary" style="width: 100%;">Download Guide</button>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(78, 205, 196, 0.1); border-radius: 12px; padding: 2rem;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">💎 Members Get 25+ Exclusive Resources</h3>
+                        <p style="margin-bottom: 2rem;">Access our complete library of templates, guides, video training, and tools when you become an IBAM member</p>
+                        <button class="btn btn-hero-primary" onclick="showPage('assessment')">Join IBAM for Full Access</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="partner">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Partner With IBAM</h1>
+                    <p class="page-subtitle">Multiple ways to support kingdom business worldwide</p>
+                </div>
+                
+                <div class="grid-2" style="margin-bottom: 3rem;">
+                    <div class="card" onclick="showPage('donate')">
+                        <div class="card-icon">💝</div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Financial Partnership</h3>
+                        <p>Support entrepreneurs directly through monthly giving or one-time donations</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="btn btn-hero-primary" style="width: 100%;">Donate Now</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card" onclick="showPage('assessment')">
+                        <div class="card-icon">🚀</div>
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Membership Partnership</h3>
+                        <p>Join as a member to access training, community, and business tools</p>
+                        <div style="margin-top: 1rem;">
+                            <span class="btn btn-hero-primary" style="width: 100%;">Take Assessment</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 2rem; text-align: center;">Other Partnership Opportunities</h2>
+                    <div class="grid-3">
+                        <div class="text-center">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🏢</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Corporate Sponsorship</h4>
+                            <p>Partner with IBAM to sponsor entire regions or training programs</p>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🎓</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Training Partnership</h4>
+                            <p>Bring IBAM curriculum to your organization or church</p>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🌍</div>
+                            <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Field Partnership</h4>
+                            <p>Help launch IBAM programs in new countries and regions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="contact">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Contact Us</h1>
+                    <p class="page-subtitle">Get in touch with our team</p>
+                </div>
+                <p style="text-align: center; font-size: 1.1rem;">Contact form and information...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DONATION PAGE -->
+    <div class="page" id="donate">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Support Kingdom Business Impact</h1>
+                    <p class="page-subtitle">Partner with entrepreneurs worldwide to multiply disciples through business</p>
+                </div>
+
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15); margin-bottom: 3rem; max-width: 800px; margin: 0 auto 3rem;">
+                    <div class="text-center mb-4">
+                        <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">Your Partnership Creates Exponential Impact</h2>
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">Every dollar multiplies through our proven three-fish methodology</p>
+                    </div>
+
+                    <div class="grid-3" style="margin-bottom: 3rem;">
+                        <div class="card text-center" style="border: 2px solid var(--primary-teal);">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🐟</div>
+                            <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">$50/month</h3>
+                            <h4 style="margin-bottom: 1rem;">Kingdom Supporter</h4>
+                            <p style="margin-bottom: 1.5rem;">Fund micro-loans for 2-3 entrepreneurs monthly</p>
+                            <button class="btn btn-hero-primary" style="width: 100%;">Give Monthly</button>
+                        </div>
+
+                        <div class="card text-center" style="border: 2px solid var(--success-green); transform: scale(1.05);">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🎣</div>
+                            <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">$150/month</h3>
+                            <h4 style="margin-bottom: 1rem;">Training Partner</h4>
+                            <p style="margin-bottom: 1.5rem;">Fund complete training for 5 entrepreneurs + loans</p>
+                            <button class="btn btn-hero-primary" style="width: 100%;">Give Monthly</button>
+                        </div>
+
+                        <div class="card text-center" style="border: 2px solid var(--orange);">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
+                            <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">$500/month</h3>
+                            <h4 style="margin-bottom: 1rem;">Multiplication Champion</h4>
+                            <p style="margin-bottom: 1.5rem;">Fund disciplemaking coaches who train others</p>
+                            <button class="btn btn-hero-primary" style="width: 100%;">Give Monthly</button>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--light-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">💝 One-Time Impact Gifts</h3>
+                        <div class="grid-4">
+                            <button class="btn btn-secondary" style="margin-bottom: 1rem;">$100</button>
+                            <button class="btn btn-secondary" style="margin-bottom: 1rem;">$250</button>
+                            <button class="btn btn-secondary" style="margin-bottom: 1rem;">$500</button>
+                            <button class="btn btn-secondary" style="margin-bottom: 1rem;">$1,000</button>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <input type="number" placeholder="Custom Amount" style="width: 100%; padding: 12px; border: 2px solid var(--border-gray); border-radius: 8px; margin-bottom: 1rem;">
+                            <button class="btn btn-hero-primary" style="width: 100%;">Give One-Time Gift</button>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 12px; padding: 2rem;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">🎯 Your Impact by the Numbers:</h4>
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>$50</strong> → 2 entrepreneurs funded → 6 jobs created</p>
+                                <p><strong>$150</strong> → 5 trained + loans → 15 businesses started</p>
+                            </div>
+                            <div>
+                                <p><strong>$500</strong> → 1 coach trained → 3 coaches multiplied</p>
+                                <p><strong>96.4% payback rate</strong> → Your gift keeps giving</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEMBERSHIP RESULT PAGES -->
+    
+    <!-- IMPACT MEMBER RESULT -->
+    <div class="page" id="impact-member-result">
+        <div class="content-page">
+            <div class="container">
+                <div class="result-card">
+                    <div class="member-type-icon impact-member">🌍</div>
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">Impact Member</h1>
+                    <p style="color: var(--success-green); font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem;">Perfect for Supporting Global Entrepreneurs</p>
+                    
+                    <div style="background: var(--light-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: left;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">✅ Your Impact Member Benefits:</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📊 Monthly impact dashboard with your direct contributions</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📧 Personal stories from entrepreneurs you're supporting</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🎥 Exclusive video updates from the field</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🌍 Access to global prayer requests and ministry needs</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📚 Monthly kingdom business insights and biblical reflections</li>
+                            <li style="padding: 0.5rem 0;">🤝 Connect with other impact partners in exclusive community</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">💰 Membership Investment:</h4>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-green); margin-bottom: 0.5rem;">$10/month</div>
+                        <p style="color: #64748b;">3-day free trial • Cancel anytime • 100% goes to entrepreneur support</p>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-hero-primary" onclick="showPage('impact-dashboard')" style="margin-right: 1rem;">Start 3-Day Trial</button>
+                        <button class="btn btn-secondary" onclick="showPage('assessment')">← Take Assessment Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INDIVIDUAL BUSINESS MEMBER RESULT -->
+    <div class="page" id="individual-business-result">
+        <div class="content-page">
+            <div class="container">
+                <div class="result-card">
+                    <div class="member-type-icon business-member">🚀</div>
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">Individual Business Member</h1>
+                    <p style="color: var(--primary-teal); font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem;">Perfect for Starting Your Faith-Driven Business Journey</p>
+                    
+                    <div style="background: var(--light-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: left;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">✅ Your Business Member Benefits:</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📚 Complete 5-module business foundation course</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📋 Access to IBAM business planning tool</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🎥 Video lessons on biblical business principles</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">👥 Private community for entrepreneurs</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📊 Progress tracking and milestone celebrations</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">💰 Micro-loan application access (after course completion)</li>
+                            <li style="padding: 0.5rem 0;">📞 Monthly group Q&A calls with IBAM team</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">💰 Membership Investment:</h4>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary-teal); margin-bottom: 0.5rem;">$10/month</div>
+                        <p style="color: #64748b;">7-day free trial • Cancel anytime • Includes all course materials</p>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-hero-primary" onclick="showPage('dashboard')" style="margin-right: 1rem;">Start 7-Day Trial</button>
+                        <button class="btn btn-secondary" onclick="showPage('assessment')">← Take Assessment Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADVANCED BUSINESS MEMBER RESULT -->
+    <div class="page" id="advanced-business-result">
+        <div class="content-page">
+            <div class="container">
+                <div class="result-card">
+                    <div class="member-type-icon advanced-member">⚡</div>
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">Advanced Business Member</h1>
+                    <p style="color: #8b5cf6; font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem;">Perfect for Scaling Your Kingdom Business Impact</p>
+                    
+                    <div style="background: var(--light-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: left;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">✅ Your Advanced Member Benefits:</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🎯 Complete 5-module business course + 3 advanced modules</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📋 Full access to IBAM business planning & scaling tools</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">👨‍🏫 Disciplemaking coach certification program</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📞 Monthly 1-on-1 coaching calls</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">💰 Priority access to larger business loans</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🌍 Opportunity to become regional IBAM trainer</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📈 Advanced business analytics and reporting tools</li>
+                            <li style="padding: 0.5rem 0;">🤝 Elite mastermind group with successful entrepreneurs</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f3e8ff, #faf5ff); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">💰 Membership Investment:</h4>
+                        <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem;">$59/month</div>
+                        <p style="color: #64748b;">7-day free trial • Cancel anytime • Includes personal coaching</p>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-hero-primary" onclick="showPage('business-planner')" style="margin-right: 1rem;">Start 7-Day Trial</button>
+                        <button class="btn btn-secondary" onclick="showPage('assessment')">← Take Assessment Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHURCH PARTNER RESULT -->
+    <div class="page" id="church-partner-result">
+        <div class="content-page">
+            <div class="container">
+                <div class="result-card">
+                    <div class="member-type-icon church-partner">⛪</div>
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">Church Partner</h1>
+                    <p style="color: var(--primary-blue); font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem;">Perfect for Equipping Your Congregation for Marketplace Ministry</p>
+                    
+                    <div style="background: var(--light-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: left;">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">✅ Your Church Partnership Benefits:</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🎓 Complete IBAM curriculum for your congregation</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">👨‍🏫 Train-the-trainer certification for your leaders</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📚 Customizable materials with your church branding</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">📊 Church-wide progress tracking dashboard</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">💰 Group access to micro-loan funding</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🎥 Monthly webinars for church leadership</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-gray);">🌍 Connect with other IBAM partner churches globally</li>
+                            <li style="padding: 0.5rem 0;">📞 Dedicated church success manager</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #eff6ff, #f0f9ff); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">💰 Partnership Investment:</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue);">Small Church (50-150): $29/month</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue);">Medium Church (150-400): $79/month</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-blue);">Large Church (400+): $149/month</div>
+                        </div>
+                        <p style="color: #64748b;">30-day free trial • Custom pricing for multi-site churches</p>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-hero-primary" onclick="showPage('impact-dashboard')" style="margin-right: 1rem;">Start 30-Day Trial</button>
+                        <button class="btn btn-secondary" onclick="showPage('assessment')">← Take Assessment Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPACT DASHBOARD PAGE -->
+    <div class="page" id="impact-dashboard">
+        <div class="content-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">IBAM Global Impact Dashboard</h1>
+                    <p class="page-subtitle">Real-time metrics showing Kingdom business transformation worldwide</p>
+                </div>
+
+                <!-- Three Fish Process Metrics -->
+                
+                <!-- GIVE A FISH - Financial Foundation -->
+                <div style="background: linear-gradient(135deg, #f0fdfa, #ecfdf5); border-radius: 20px; padding: 2rem; margin-bottom: 3rem; border-left: 6px solid var(--primary-teal);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-size: 2rem;">🐟</span>
+                        <span>GIVE A FISH - Financial Foundation</span>
+                    </h3>
+                    <div class="grid-3">
+                        <div class="metric-card primary">
+                            <div class="metric-icon">💰</div>
+                            <div class="metric-value">$287K</div>
+                            <div class="metric-label">Total Loans Disbursed</div>
+                            <div class="metric-change positive">+32% this year</div>
+                        </div>
+                        
+                        <div class="metric-card success">
+                            <div class="metric-icon">📈</div>
+                            <div class="metric-value">96.4%</div>
+                            <div class="metric-label">Loan Payback Rate</div>
+                            <div class="metric-change positive">Industry leading</div>
+                        </div>
+                        
+                        <div class="metric-card business">
+                            <div class="metric-icon">💵</div>
+                            <div class="metric-value">$1,425</div>
+                            <div class="metric-label">Average Loan Size</div>
+                            <div class="metric-change positive">Optimal for impact</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TEACH TO FISH - Business Training -->
+                <div style="background: linear-gradient(135deg, #eff6ff, #f0f9ff); border-radius: 20px; padding: 2rem; margin-bottom: 3rem; border-left: 6px solid var(--primary-blue);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-size: 2rem;">🎣</span>
+                        <span>TEACH TO FISH - Business Education</span>
+                    </h3>
+                    <div class="grid-4">
+                        <div class="metric-card business">
+                            <div class="metric-icon">👥</div>
+                            <div class="metric-value">347</div>
+                            <div class="metric-label">Entrepreneurs Trained</div>
+                            <div class="metric-change positive">+89 this year</div>
+                        </div>
+                        
+                        <div class="metric-card global">
+                            <div class="metric-icon">🌍</div>
+                            <div class="metric-value">11</div>
+                            <div class="metric-label">Countries with Training</div>
+                            <div class="metric-change positive">+3 new this year</div>
+                        </div>
+                        
+                        <div class="metric-card secondary">
+                            <div class="metric-icon">🏢</div>
+                            <div class="metric-value">142</div>
+                            <div class="metric-label">Businesses Started</div>
+                            <div class="metric-change positive">+38 this year</div>
+                        </div>
+                        
+                        <div class="metric-card primary">
+                            <div class="metric-icon">📊</div>
+                            <div class="metric-value">89%</div>
+                            <div class="metric-label">Business Survival Rate</div>
+                            <div class="metric-change positive">vs 55% average</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EQUIP FOR DISCIPLESHIP - Kingdom Multiplication -->
+                <div style="background: linear-gradient(135deg, #fef3c7, #fef7cd); border-radius: 20px; padding: 2rem; margin-bottom: 3rem; border-left: 6px solid var(--orange);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-size: 2rem;">⚡</span>
+                        <span>EQUIP FOR DISCIPLESHIP - Kingdom Multiplication</span>
+                    </h3>
+                    <div class="grid-4">
+                        <div class="metric-card global">
+                            <div class="metric-icon">🎯</div>
+                            <div class="metric-value">47</div>
+                            <div class="metric-label">Disciplemaking Coaches Trained</div>
+                            <div class="metric-change positive">+23 this year</div>
+                        </div>
+                        
+                        <div class="metric-card success">
+                            <div class="metric-icon">🗣️</div>
+                            <div class="metric-value">189</div>
+                            <div class="metric-label">Active Faith Sharers</div>
+                            <div class="metric-change positive">+67 this year</div>
+                        </div>
+                        
+                        <div class="metric-card secondary">
+                            <div class="metric-icon">👨‍🏫</div>
+                            <div class="metric-value">14</div>
+                            <div class="metric-label">Local Trainers Developed</div>
+                            <div class="metric-change positive">Indigenous leadership</div>
+                        </div>
+                        
+                        <div class="metric-card primary">
+                            <div class="metric-icon">🌱</div>
+                            <div class="metric-value">3.1x</div>
+                            <div class="metric-label">Multiplication Rate</div>
+                            <div class="metric-change positive">Each coach trains 3+ others</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overall Kingdom Impact -->
+                <div class="grid-3" style="margin-bottom: 3rem;">
+                    <div class="metric-card secondary">
+                        <div class="metric-icon">✝️</div>
+                        <div class="metric-value">124</div>
+                        <div class="metric-label">Disciples Made</div>
+                        <div class="metric-change positive">Through business relationships</div>
+                    </div>
+                    
+                    <div class="metric-card business">
+                        <div class="metric-icon">💼</div>
+                        <div class="metric-value">823</div>
+                        <div class="metric-label">Jobs Created</div>
+                        <div class="metric-change positive">Economic transformation</div>
+                    </div>
+
+                    <div class="metric-card global">
+                        <div class="metric-icon">⛪</div>
+                        <div class="metric-value">19</div>
+                        <div class="metric-label">Churches Strengthened</div>
+                        <div class="metric-change positive">Through marketplace ministry</div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid-2" style="margin-bottom: 3rem;">
+                    <div class="chart-container">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">Loan Performance Growth</h3>
+                        <div class="chart-placeholder">
+                            <div class="chart-bars">
+                                <div class="chart-bar" style="height: 45%;">
+                                    <div class="bar-value">$58K</div>
+                                    <div class="bar-label">Q1 2024</div>
+                                </div>
+                                <div class="chart-bar" style="height: 65%;">
+                                    <div class="bar-value">$72K</div>
+                                    <div class="bar-label">Q2 2024</div>
+                                </div>
+                                <div class="chart-bar" style="height: 80%;">
+                                    <div class="bar-value">$89K</div>
+                                    <div class="bar-label">Q3 2024</div>
+                                </div>
+                                <div class="chart-bar" style="height: 100%;">
+                                    <div class="bar-value">$97K</div>
+                                    <div class="bar-label">Q4 2024</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">Growing Global Reach</h3>
+                        <div class="chart-placeholder">
+                            <div class="region-stats">
+                                <div class="region-item">
+                                    <div class="region-bar africa" style="width: 70%;"></div>
+                                    <div class="region-info">
+                                        <span class="region-name">Africa</span>
+                                        <span class="region-count">6 countries</span>
+                                    </div>
+                                </div>
+                                <div class="region-item">
+                                    <div class="region-bar asia" style="width: 40%;"></div>
+                                    <div class="region-info">
+                                        <span class="region-name">Asia</span>
+                                        <span class="region-count">3 countries</span>
+                                    </div>
+                                </div>
+                                <div class="region-item">
+                                    <div class="region-bar latin" style="width: 25%;"></div>
+                                    <div class="region-info">
+                                        <span class="region-name">Latin America</span>
+                                        <span class="region-count">2 countries</span>
+                                    </div>
+                                </div>
+                                <div class="region-item">
+                                    <div class="region-bar other" style="width: 20%;"></div>
+                                    <div class="region-info">
+                                        <span class="region-name">Other Regions</span>
+                                        <span class="region-count">Expanding</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Feed -->
+                <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">Recent Impact Highlights - Three Fish Progress</h3>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-icon success">🐟</div>
+                            <div class="activity-content">
+                                <div class="activity-title"><strong>GIVE A FISH:</strong> $12,000 loan disbursed to 8 entrepreneurs in Kenya</div>
+                                <div class="activity-time">2 hours ago • 97% expected payback rate</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon business">🎣</div>
+                            <div class="activity-content">
+                                <div class="activity-title"><strong>TEACH TO FISH:</strong> 23 entrepreneurs completed training in Guatemala</div>
+                                <div class="activity-time">1 day ago • 89% launching businesses within 6 months</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon global">⚡</div>
+                            <div class="activity-content">
+                                <div class="activity-title"><strong>EQUIP FOR DISCIPLESHIP:</strong> 5 new disciplemaking coaches certified in Philippines</div>
+                                <div class="activity-time">3 days ago • Each expected to train 3+ others</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon primary">🌍</div>
+                            <div class="activity-content">
+                                <div class="activity-title">IBAM program launched in Rwanda (Country #11)</div>
+                                <div class="activity-time">1 week ago • Full three-fish implementation</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon success">✝️</div>
+                            <div class="activity-content">
+                                <div class="activity-title">17 new disciples reported through marketplace relationships</div>
+                                <div class="activity-time">1 week ago • 3.1x multiplication rate achieved</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Investor Appeal Box -->
+                    <div style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 12px; padding: 2rem; margin-top: 2rem; border-left: 4px solid var(--primary-teal);">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">💡 Small Scale, Massive Potential - Why These Metrics Matter:</h4>
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>🎯 Quality Over Quantity:</strong> 96.4% payback rate proves model effectiveness</p>
+                                <p><strong>🗣️ High Conversion:</strong> 189 active faith sharers from 347 trained (54%)</p>
+                                <p><strong>👨‍🏫 Sustainable Growth:</strong> 14 local trainers create indigenous leadership</p>
+                            </div>
+                            <div>
+                                <p><strong>🌱 3.1x Multiplication:</strong> Each investment creates exponential returns</p>
+                                <p><strong>⛪ Deep Community Impact:</strong> 19 churches strengthened shows quality engagement</p>
+                                <p><strong>✝️ Proven Discipleship:</strong> 124 disciples made through relationships, not programs</p>
+                            </div>
+                        </div>
+                        <div style="background: rgba(78, 205, 196, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                            <p style="font-weight: 600; color: var(--primary-blue); text-align: center;">
+                                💼 <strong>Ready for Scale:</strong> Proven model in 11 countries • 89% business survival rate • 3.1x multiplication 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: 3rem;">
+                    <span class="btn btn-hero-primary" onclick="showPage('donate')">Support This Impact</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="lesson">
+        <div class="content-page">
+            <div class="container">
+                <div style="background: white; border-radius: 20px; padding: 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15); max-width: 800px; margin: 0 auto;">
+                    <span class="btn btn-secondary" onclick="showPage('dashboard')" style="margin-bottom: 2rem;">← Back to Dashboard</span>
+                    <h1 style="color: var(--primary-blue); margin-bottom: 1rem;">Module 2: Strategic Business Planning</h1>
+                    <p style="color: #64748b; margin-bottom: 2rem;">Lesson 3: Market Research & Customer Discovery</p>
+                    
+                    <div style="background: var(--primary-blue); color: white; height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-play-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>Video: Understanding Your Market (18 minutes)</p>
+                        </div>
+                    </div>
+                    
+                    <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">Biblical Foundation</h2>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"The plans of the diligent lead to profit as surely as haste leads to poverty." - Proverbs 21:5</p>
+                    
+                    <div class="text-center mt-4">
+                        <span class="btn btn-hero-primary" onclick="showPage('business-planner')">Update Business Plan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation System
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Assessment Logic
+        let currentQuestion = 1;
+        let assessmentAnswers = {};
+
+        function selectOption(element, value) {
+            const siblings = element.parentElement.children;
+            for (let sibling of siblings) {
+                sibling.classList.remove('selected');
+            }
+            
+            element.classList.add('selected');
+            assessmentAnswers[`q${currentQuestion}`] = value;
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion === 1) {
+                const firstAnswer = assessmentAnswers.q1;
+                
+                if (firstAnswer === 'impact') {
+                    // Direct to Impact Member result
+                    showPage('impact-member-result');
+                    return;
+                } else if (firstAnswer === 'church') {
+                    // Direct to Church Partner result
+                    showPage('church-partner-result');
+                    return;
+                } else if (firstAnswer === 'business') {
+                    currentQuestion++;
+                    showQuestion();
+                }
+            } else if (currentQuestion === 2) {
+                currentQuestion++;
+                showQuestion();
+            } else if (currentQuestion === 3) {
+                // Route business users based on their answers
+                const situation = assessmentAnswers.q2;
+                const experience = assessmentAnswers.q3;
+                
+                if (experience === 'experienced' || situation === 'existing') {
+                    showPage('advanced-business-result');
+                } else {
+                    showPage('individual-business-result');
+                }
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function showQuestion() {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(q => q.classList.remove('active'));
+            
+            document.getElementById(`q${currentQuestion}`).classList.add('active');
+            
+            const progress = (currentQuestion / 3) * 100;
+            const progressBar = document.getElementById('assessmentProgress');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+            
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (prevBtn) prevBtn.style.display = currentQuestion > 1 ? 'inline-block' : 'none';
+            if (nextBtn) nextBtn.disabled = !assessmentAnswers[`q${currentQuestion}`];
+            
+            if (currentQuestion === 3 && nextBtn) {
+                nextBtn.textContent = 'Get My Results';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
