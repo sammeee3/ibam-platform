@@ -944,7 +944,7 @@
         }
     </style>
 </head>
-<body><div style="background: #4ECDC4; color: white; text-align: center; padding: 10px; font-weight: 600; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;">📱 LIVE DEMO - IBAM Platform Preview for Steve Adams Review</div><div style="height: 50px;"></div>
+<body>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -1851,12 +1851,20 @@
     
     <!-- OLD DONATION PAGE REDIRECT -->
     <div class="page" id="donate">
+        <script>
+            // Automatically redirect to new donation experience
+            setTimeout(() => showPage('donate-experience'), 100);
+        </script>
     </div>
 
     <!-- MEMBERSHIP RESULT PAGES -->
     
     <!-- IMPACT MEMBER RESULT -->
     <div class="page" id="donate">
+        <script>
+            // Automatically redirect to new donation experience
+            setTimeout(() => showPage('donate-experience'), 100);
+        </script>
     </div>
     
     <!-- IMPACT MEMBER RESULT -->
@@ -2441,5 +2449,294 @@
         </div>
     </footer>
 
+    <script>
+        // Page Navigation System
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Assessment Logic
+        let currentQuestion = 1;
+        let assessmentAnswers = {};
+        let firstAnswer = '';
+
+        // Assessment Option Selection
+        function selectAssessmentOption(value, element) {
+            // Remove previous selections
+            const siblings = element.parentElement.children;
+            for (let sibling of siblings) {
+                sibling.style.background = 'rgba(255, 255, 255, 0.9)';
+                sibling.style.transform = 'scale(1)';
+            }
+            
+            // Highlight selected option
+            element.style.background = 'rgba(78, 205, 196, 0.1)';
+            element.style.transform = 'scale(1.02)';
+            
+            firstAnswer = value;
+            
+            // Route based on first answer
+            setTimeout(() => {
+                if (value === 'support') {
+                    // Show options: donate or impact member
+                    showSupportOptions();
+                } else if (value === 'church') {
+                    routeToExperience('church');
+                } else if (value === 'business') {
+                    showQuestion2();
+                } else if (value === 'explore') {
+                    routeToExperience('impact-member');
+                }
+            }, 500);
+        }
+
+        function showSupportOptions() {
+            const q1 = document.getElementById('question-1');
+            q1.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">How would you like to support global entrepreneurs?</h2>
+                    <div style="background: rgba(255, 255, 255, 0.1); border-radius: 50px; padding: 8px 20px; display: inline-block; font-size: 0.9rem;">
+                        Final step • 100% Private
+                    </div>
+                </div>
+                
+                <div class="assessment-options" style="display: grid; gap: 1rem; max-width: 500px; margin: 0 auto;">
+                    <div class="assessment-option" onclick="routeToExperience('donate')" style="background: rgba(255, 255, 255, 0.9); color: var(--primary-blue); border-radius: 15px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💝</div>
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Give financial support</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;">Fund loans and training directly</p>
+                    </div>
+                    
+                    <div class="assessment-option" onclick="routeToExperience('impact-member')" style="background: rgba(255, 255, 255, 0.9); color: var(--primary-blue); border-radius: 15px; padding: 1.5rem; cursor: pointer; transition: all 0.3s ease; text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Monthly support + impact tracking</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;">Get detailed impact reports and stories</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showQuestion2() {
+            document.getElementById('question-1').style.display = 'none';
+            document.getElementById('question-2').style.display = 'block';
+        }
+
+        function routeToExperience(path) {
+            // Add visual feedback
+            const assessmentWidget = document.getElementById('assessment-widget');
+            assessmentWidget.style.transform = 'scale(0.95)';
+            assessmentWidget.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                switch(path) {
+                    case 'donate':
+                        showPage('donate-experience');
+                        break;
+                    case 'impact-member':
+                        showPage('impact-member-result');
+                        break;
+                    case 'church':
+                        showPage('usa-church-partner-result');
+                        break;
+                    case 'startup':
+                        showPage('individual-business-result');
+                        break;
+                    case 'advanced':
+                        showPage('advanced-business-result');
+                        break;
+                }
+            }, 300);
+        }
+
+        // USA Church Trial Function
+        function startUSAChurchTrial() {
+            alert('Redirecting to secure church registration portal for your 30-day free trial...');
+            // Here you would integrate with actual registration system
+        }
+
+        // About Section Toggle
+        function toggleAboutInfo() {
+            const aboutSection = document.getElementById('about-section');
+            if (aboutSection.style.display === 'none' || aboutSection.style.display === '') {
+                aboutSection.style.display = 'block';
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                aboutSection.style.display = 'none';
+            }
+        }
+
+        function scrollToAssessment() {
+            document.getElementById('about-section').style.display = 'none';
+            document.getElementById('assessment-widget').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Donation Functions
+        let selectedDonationType = '';
+        let selectedAmount = 0;
+
+        function selectDonationAmount(type, amount) {
+            selectedDonationType = type;
+            selectedAmount = amount;
+            
+            // Update UI
+            updateImpactCalculator(amount, type);
+            
+            // Show donation form
+            document.getElementById('donation-form').style.display = 'block';
+            document.getElementById('donation-form').scrollIntoView({ behavior: 'smooth' });
+            
+            // Update form display
+            const frequency = type === 'monthly' ? '/month' : ' one-time';
+            document.getElementById('donation-amount-display').textContent = `${amount}${frequency}`;
+            
+            // Update impact display
+            const impact = type === 'monthly' ? 
+                `${Math.floor(amount/25)} entrepreneurs funded monthly` : 
+                `${Math.floor(amount/400)} full training programs funded`;
+            document.getElementById('impact-display').textContent = impact;
+        }
+
+        function selectCustomAmount() {
+            const customAmount = document.getElementById('customAmount').value;
+            if (customAmount && customAmount > 0) {
+                selectDonationAmount('onetime', parseInt(customAmount));
+            }
+        }
+
+        function updateImpactCalculator(amount, type) {
+            const entrepreneurs = type === 'monthly' ? Math.floor(amount/25) : Math.floor(amount/400);
+            const jobs = entrepreneurs * 3;
+            
+            document.getElementById('impact-preview').innerHTML = `
+                <div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-teal);">${entrepreneurs}</div>
+                    <div>Entrepreneurs Funded</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--success-green);">${jobs}</div>
+                    <div>Jobs Created</div>
+                </div>
+            `;
+        }
+
+        function processDonation() {
+            const email = document.getElementById('donorEmail').value;
+            const name = document.getElementById('donorName').value;
+            
+            if (!email || !name) {
+                alert('Please fill in your email and name to complete your donation.');
+                return;
+            }
+            
+            // Simulate donation processing
+            alert(`Thank you ${name}! Your secure donation of ${selectedAmount} ${selectedDonationType === 'monthly' ? 'monthly' : 'one-time'} is being processed. You'll receive a confirmation email at ${email}.`);
+            
+            // Here you would integrate with actual payment processor
+            console.log('Processing donation:', {
+                email: email,
+                name: name,
+                amount: selectedAmount,
+                type: selectedDonationType,
+                project: document.querySelector('input[name="project"]:checked').value
+            });
+        }
+
+        // Original Assessment Logic (for old assessment page)
+        function selectOption(element, value) {
+            const siblings = element.parentElement.children;
+            for (let sibling of siblings) {
+                sibling.classList.remove('selected');
+            }
+            
+            element.classList.add('selected');
+            assessmentAnswers[`q${currentQuestion}`] = value;
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion === 1) {
+                const firstAnswer = assessmentAnswers.q1;
+                
+                if (firstAnswer === 'impact') {
+                    showPage('impact-member-result');
+                    return;
+                } else if (firstAnswer === 'church') {
+                    showPage('church-partner-result');
+                    return;
+                } else if (firstAnswer === 'business') {
+                    currentQuestion++;
+                    showQuestion();
+                }
+            } else if (currentQuestion === 2) {
+                currentQuestion++;
+                showQuestion();
+            } else if (currentQuestion === 3) {
+                const situation = assessmentAnswers.q2;
+                const experience = assessmentAnswers.q3;
+                
+                if (experience === 'experienced' || situation === 'existing') {
+                    showPage('advanced-business-result');
+                } else {
+                    showPage('individual-business-result');
+                }
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function showQuestion() {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(q => q.classList.remove('active'));
+            
+            document.getElementById(`q${currentQuestion}`).classList.add('active');
+            
+            const progress = (currentQuestion / 3) * 100;
+            const progressBar = document.getElementById('assessmentProgress');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+            
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (prevBtn) prevBtn.style.display = currentQuestion > 1 ? 'inline-block' : 'none';
+            if (nextBtn) nextBtn.disabled = !assessmentAnswers[`q${currentQuestion}`];
+            
+            if (currentQuestion === 3 && nextBtn) {
+                nextBtn.textContent = 'Get My Results';
+            }
+        }
+
+        // Hover effects for assessment options
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+            
+            // Add hover effects
+            const style = document.createElement('style');
+            style.textContent = `
+                .assessment-option:hover {
+                    transform: scale(1.02) !important;
+                    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.2) !important;
+                }
+                .donation-option:hover {
+                    transform: scale(1.02) !important;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>
